@@ -3,7 +3,7 @@ description: A subgraph to index data on the Azuki contract
 features:
   - ipfsOnEthereumContracts
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: Azuki
@@ -22,8 +22,8 @@ dataSources:
         - Property
       abis:
         - name: Azuki
-          file: ./abis/Azuki.json
+          file: Azuki/abis/Azuki.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/azuki.ts
+      file: Azuki/Azuki.wasm
