@@ -11,6 +11,7 @@ export function handleTransfer(event: TransferEvent): void {
   transfer.to = event.params.to;
   transfer.tokenId = event.params.tokenId;
   transfer.blockNumber = event.block.number;
+  transfer.blockTimestamp = event.block.timestamp;
   transfer.transactionHash = event.transaction.hash;
   transfer.save();
 
