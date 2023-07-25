@@ -1,0 +1,5 @@
+sources:
+  - name: analytics
+    handler:
+      graphql:
+        endpoint: https://ethereum-mainnet.graph-eu.p2pify.com/7bb8d3da3bc6edccafcee65a672ab943/analytics

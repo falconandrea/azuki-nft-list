@@ -1,0 +1,714 @@
+schema {
+  query: Query
+  subscription: Subscription
+}
+
+"Marks the GraphQL type as indexable entity.  Each type that should be an entity is required to be annotated with this directive."
+directive @entity on OBJECT
+
+"Defined a Subgraph ID for an object type"
+directive @subgraphId(id: String!) on OBJECT
+
+"creates a virtual field on the entity that may be queried but cannot be set manually through the mappings API."
+directive @derivedFrom(field: String!) on FIELD_DEFINITION
+
+type Azuki {
+  id: ID!
+  creator: Bytes!
+  newOwner: Bytes!
+  tokenURI: String!
+  blockNumber: BigInt!
+}
+
+input Azuki_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  creator: Bytes
+  creator_not: Bytes
+  creator_gt: Bytes
+  creator_lt: Bytes
+  creator_gte: Bytes
+  creator_lte: Bytes
+  creator_in: [Bytes!]
+  creator_not_in: [Bytes!]
+  creator_contains: Bytes
+  creator_not_contains: Bytes
+  newOwner: Bytes
+  newOwner_not: Bytes
+  newOwner_gt: Bytes
+  newOwner_lt: Bytes
+  newOwner_gte: Bytes
+  newOwner_lte: Bytes
+  newOwner_in: [Bytes!]
+  newOwner_not_in: [Bytes!]
+  newOwner_contains: Bytes
+  newOwner_not_contains: Bytes
+  tokenURI: String
+  tokenURI_not: String
+  tokenURI_gt: String
+  tokenURI_lt: String
+  tokenURI_gte: String
+  tokenURI_lte: String
+  tokenURI_in: [String!]
+  tokenURI_not_in: [String!]
+  tokenURI_contains: String
+  tokenURI_contains_nocase: String
+  tokenURI_not_contains: String
+  tokenURI_not_contains_nocase: String
+  tokenURI_starts_with: String
+  tokenURI_starts_with_nocase: String
+  tokenURI_not_starts_with: String
+  tokenURI_not_starts_with_nocase: String
+  tokenURI_ends_with: String
+  tokenURI_ends_with_nocase: String
+  tokenURI_not_ends_with: String
+  tokenURI_not_ends_with_nocase: String
+  blockNumber: BigInt
+  blockNumber_not: BigInt
+  blockNumber_gt: BigInt
+  blockNumber_lt: BigInt
+  blockNumber_gte: BigInt
+  blockNumber_lte: BigInt
+  blockNumber_in: [BigInt!]
+  blockNumber_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: BlockChangedFilter
+  and: [Azuki_filter]
+  or: [Azuki_filter]
+}
+
+enum Azuki_orderBy {
+  id
+  creator
+  newOwner
+  tokenURI
+  blockNumber
+}
+
+scalar BigDecimal
+
+scalar BigInt
+
+input BlockChangedFilter {
+  number_gte: Int!
+}
+
+input Block_height {
+  hash: Bytes
+  number: Int
+  number_gte: Int
+}
+
+scalar Bytes
+
+"""Defines the order direction, either ascending or descending"""
+enum OrderDirection {
+  asc
+  desc
+}
+
+type Property {
+  id: ID!
+  image: String
+  type: String
+  hair: String
+  headgear: String
+  face: String
+  neck: String
+  clothing: String
+  eyes: String
+  mouth: String
+  background: String
+  ear: String
+  offhand: String
+  special: String
+}
+
+input Property_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  image: String
+  image_not: String
+  image_gt: String
+  image_lt: String
+  image_gte: String
+  image_lte: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_contains: String
+  image_contains_nocase: String
+  image_not_contains: String
+  image_not_contains_nocase: String
+  image_starts_with: String
+  image_starts_with_nocase: String
+  image_not_starts_with: String
+  image_not_starts_with_nocase: String
+  image_ends_with: String
+  image_ends_with_nocase: String
+  image_not_ends_with: String
+  image_not_ends_with_nocase: String
+  type: String
+  type_not: String
+  type_gt: String
+  type_lt: String
+  type_gte: String
+  type_lte: String
+  type_in: [String!]
+  type_not_in: [String!]
+  type_contains: String
+  type_contains_nocase: String
+  type_not_contains: String
+  type_not_contains_nocase: String
+  type_starts_with: String
+  type_starts_with_nocase: String
+  type_not_starts_with: String
+  type_not_starts_with_nocase: String
+  type_ends_with: String
+  type_ends_with_nocase: String
+  type_not_ends_with: String
+  type_not_ends_with_nocase: String
+  hair: String
+  hair_not: String
+  hair_gt: String
+  hair_lt: String
+  hair_gte: String
+  hair_lte: String
+  hair_in: [String!]
+  hair_not_in: [String!]
+  hair_contains: String
+  hair_contains_nocase: String
+  hair_not_contains: String
+  hair_not_contains_nocase: String
+  hair_starts_with: String
+  hair_starts_with_nocase: String
+  hair_not_starts_with: String
+  hair_not_starts_with_nocase: String
+  hair_ends_with: String
+  hair_ends_with_nocase: String
+  hair_not_ends_with: String
+  hair_not_ends_with_nocase: String
+  headgear: String
+  headgear_not: String
+  headgear_gt: String
+  headgear_lt: String
+  headgear_gte: String
+  headgear_lte: String
+  headgear_in: [String!]
+  headgear_not_in: [String!]
+  headgear_contains: String
+  headgear_contains_nocase: String
+  headgear_not_contains: String
+  headgear_not_contains_nocase: String
+  headgear_starts_with: String
+  headgear_starts_with_nocase: String
+  headgear_not_starts_with: String
+  headgear_not_starts_with_nocase: String
+  headgear_ends_with: String
+  headgear_ends_with_nocase: String
+  headgear_not_ends_with: String
+  headgear_not_ends_with_nocase: String
+  face: String
+  face_not: String
+  face_gt: String
+  face_lt: String
+  face_gte: String
+  face_lte: String
+  face_in: [String!]
+  face_not_in: [String!]
+  face_contains: String
+  face_contains_nocase: String
+  face_not_contains: String
+  face_not_contains_nocase: String
+  face_starts_with: String
+  face_starts_with_nocase: String
+  face_not_starts_with: String
+  face_not_starts_with_nocase: String
+  face_ends_with: String
+  face_ends_with_nocase: String
+  face_not_ends_with: String
+  face_not_ends_with_nocase: String
+  neck: String
+  neck_not: String
+  neck_gt: String
+  neck_lt: String
+  neck_gte: String
+  neck_lte: String
+  neck_in: [String!]
+  neck_not_in: [String!]
+  neck_contains: String
+  neck_contains_nocase: String
+  neck_not_contains: String
+  neck_not_contains_nocase: String
+  neck_starts_with: String
+  neck_starts_with_nocase: String
+  neck_not_starts_with: String
+  neck_not_starts_with_nocase: String
+  neck_ends_with: String
+  neck_ends_with_nocase: String
+  neck_not_ends_with: String
+  neck_not_ends_with_nocase: String
+  clothing: String
+  clothing_not: String
+  clothing_gt: String
+  clothing_lt: String
+  clothing_gte: String
+  clothing_lte: String
+  clothing_in: [String!]
+  clothing_not_in: [String!]
+  clothing_contains: String
+  clothing_contains_nocase: String
+  clothing_not_contains: String
+  clothing_not_contains_nocase: String
+  clothing_starts_with: String
+  clothing_starts_with_nocase: String
+  clothing_not_starts_with: String
+  clothing_not_starts_with_nocase: String
+  clothing_ends_with: String
+  clothing_ends_with_nocase: String
+  clothing_not_ends_with: String
+  clothing_not_ends_with_nocase: String
+  eyes: String
+  eyes_not: String
+  eyes_gt: String
+  eyes_lt: String
+  eyes_gte: String
+  eyes_lte: String
+  eyes_in: [String!]
+  eyes_not_in: [String!]
+  eyes_contains: String
+  eyes_contains_nocase: String
+  eyes_not_contains: String
+  eyes_not_contains_nocase: String
+  eyes_starts_with: String
+  eyes_starts_with_nocase: String
+  eyes_not_starts_with: String
+  eyes_not_starts_with_nocase: String
+  eyes_ends_with: String
+  eyes_ends_with_nocase: String
+  eyes_not_ends_with: String
+  eyes_not_ends_with_nocase: String
+  mouth: String
+  mouth_not: String
+  mouth_gt: String
+  mouth_lt: String
+  mouth_gte: String
+  mouth_lte: String
+  mouth_in: [String!]
+  mouth_not_in: [String!]
+  mouth_contains: String
+  mouth_contains_nocase: String
+  mouth_not_contains: String
+  mouth_not_contains_nocase: String
+  mouth_starts_with: String
+  mouth_starts_with_nocase: String
+  mouth_not_starts_with: String
+  mouth_not_starts_with_nocase: String
+  mouth_ends_with: String
+  mouth_ends_with_nocase: String
+  mouth_not_ends_with: String
+  mouth_not_ends_with_nocase: String
+  background: String
+  background_not: String
+  background_gt: String
+  background_lt: String
+  background_gte: String
+  background_lte: String
+  background_in: [String!]
+  background_not_in: [String!]
+  background_contains: String
+  background_contains_nocase: String
+  background_not_contains: String
+  background_not_contains_nocase: String
+  background_starts_with: String
+  background_starts_with_nocase: String
+  background_not_starts_with: String
+  background_not_starts_with_nocase: String
+  background_ends_with: String
+  background_ends_with_nocase: String
+  background_not_ends_with: String
+  background_not_ends_with_nocase: String
+  ear: String
+  ear_not: String
+  ear_gt: String
+  ear_lt: String
+  ear_gte: String
+  ear_lte: String
+  ear_in: [String!]
+  ear_not_in: [String!]
+  ear_contains: String
+  ear_contains_nocase: String
+  ear_not_contains: String
+  ear_not_contains_nocase: String
+  ear_starts_with: String
+  ear_starts_with_nocase: String
+  ear_not_starts_with: String
+  ear_not_starts_with_nocase: String
+  ear_ends_with: String
+  ear_ends_with_nocase: String
+  ear_not_ends_with: String
+  ear_not_ends_with_nocase: String
+  offhand: String
+  offhand_not: String
+  offhand_gt: String
+  offhand_lt: String
+  offhand_gte: String
+  offhand_lte: String
+  offhand_in: [String!]
+  offhand_not_in: [String!]
+  offhand_contains: String
+  offhand_contains_nocase: String
+  offhand_not_contains: String
+  offhand_not_contains_nocase: String
+  offhand_starts_with: String
+  offhand_starts_with_nocase: String
+  offhand_not_starts_with: String
+  offhand_not_starts_with_nocase: String
+  offhand_ends_with: String
+  offhand_ends_with_nocase: String
+  offhand_not_ends_with: String
+  offhand_not_ends_with_nocase: String
+  special: String
+  special_not: String
+  special_gt: String
+  special_lt: String
+  special_gte: String
+  special_lte: String
+  special_in: [String!]
+  special_not_in: [String!]
+  special_contains: String
+  special_contains_nocase: String
+  special_not_contains: String
+  special_not_contains_nocase: String
+  special_starts_with: String
+  special_starts_with_nocase: String
+  special_not_starts_with: String
+  special_not_starts_with_nocase: String
+  special_ends_with: String
+  special_ends_with_nocase: String
+  special_not_ends_with: String
+  special_not_ends_with_nocase: String
+  """Filter for the block changed event."""
+  _change_block: BlockChangedFilter
+  and: [Property_filter]
+  or: [Property_filter]
+}
+
+enum Property_orderBy {
+  id
+  image
+  type
+  hair
+  headgear
+  face
+  neck
+  clothing
+  eyes
+  mouth
+  background
+  ear
+  offhand
+  special
+}
+
+type Query {
+  transfer(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): Transfer
+  transfers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: Transfer_orderBy
+    orderDirection: OrderDirection
+    where: Transfer_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): [Transfer!]!
+  azuki(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): Azuki
+  azukis(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: Azuki_orderBy
+    orderDirection: OrderDirection
+    where: Azuki_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): [Azuki!]!
+  property(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): Property
+  properties(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: Property_orderBy
+    orderDirection: OrderDirection
+    where: Property_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): [Property!]!
+  """Access to subgraph metadata"""
+  _meta(block: Block_height): _Meta_
+}
+
+type Subscription {
+  transfer(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): Transfer
+  transfers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: Transfer_orderBy
+    orderDirection: OrderDirection
+    where: Transfer_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): [Transfer!]!
+  azuki(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): Azuki
+  azukis(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: Azuki_orderBy
+    orderDirection: OrderDirection
+    where: Azuki_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): [Azuki!]!
+  property(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): Property
+  properties(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: Property_orderBy
+    orderDirection: OrderDirection
+    where: Property_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: _SubgraphErrorPolicy_! = deny
+  ): [Property!]!
+  """Access to subgraph metadata"""
+  _meta(block: Block_height): _Meta_
+}
+
+type Transfer {
+  id: Bytes!
+  from: Bytes!
+  to: Bytes!
+  tokenId: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+input Transfer_filter {
+  id: Bytes
+  id_not: Bytes
+  id_gt: Bytes
+  id_lt: Bytes
+  id_gte: Bytes
+  id_lte: Bytes
+  id_in: [Bytes!]
+  id_not_in: [Bytes!]
+  id_contains: Bytes
+  id_not_contains: Bytes
+  from: Bytes
+  from_not: Bytes
+  from_gt: Bytes
+  from_lt: Bytes
+  from_gte: Bytes
+  from_lte: Bytes
+  from_in: [Bytes!]
+  from_not_in: [Bytes!]
+  from_contains: Bytes
+  from_not_contains: Bytes
+  to: Bytes
+  to_not: Bytes
+  to_gt: Bytes
+  to_lt: Bytes
+  to_gte: Bytes
+  to_lte: Bytes
+  to_in: [Bytes!]
+  to_not_in: [Bytes!]
+  to_contains: Bytes
+  to_not_contains: Bytes
+  tokenId: BigInt
+  tokenId_not: BigInt
+  tokenId_gt: BigInt
+  tokenId_lt: BigInt
+  tokenId_gte: BigInt
+  tokenId_lte: BigInt
+  tokenId_in: [BigInt!]
+  tokenId_not_in: [BigInt!]
+  blockNumber: BigInt
+  blockNumber_not: BigInt
+  blockNumber_gt: BigInt
+  blockNumber_lt: BigInt
+  blockNumber_gte: BigInt
+  blockNumber_lte: BigInt
+  blockNumber_in: [BigInt!]
+  blockNumber_not_in: [BigInt!]
+  blockTimestamp: BigInt
+  blockTimestamp_not: BigInt
+  blockTimestamp_gt: BigInt
+  blockTimestamp_lt: BigInt
+  blockTimestamp_gte: BigInt
+  blockTimestamp_lte: BigInt
+  blockTimestamp_in: [BigInt!]
+  blockTimestamp_not_in: [BigInt!]
+  transactionHash: Bytes
+  transactionHash_not: Bytes
+  transactionHash_gt: Bytes
+  transactionHash_lt: Bytes
+  transactionHash_gte: Bytes
+  transactionHash_lte: Bytes
+  transactionHash_in: [Bytes!]
+  transactionHash_not_in: [Bytes!]
+  transactionHash_contains: Bytes
+  transactionHash_not_contains: Bytes
+  """Filter for the block changed event."""
+  _change_block: BlockChangedFilter
+  and: [Transfer_filter]
+  or: [Transfer_filter]
+}
+
+enum Transfer_orderBy {
+  id
+  from
+  to
+  tokenId
+  blockNumber
+  blockTimestamp
+  transactionHash
+}
+
+type _Block_ {
+  """The hash of the block"""
+  hash: Bytes
+  """The block number"""
+  number: Int!
+  """Integer representation of the timestamp stored in blocks for the chain"""
+  timestamp: Int
+}
+
+"""The type for the top-level _meta field"""
+type _Meta_ {
+  """
+  Information about a specific subgraph block. The hash of the block
+  will be null if the _meta field has a block constraint that asks for
+  a block number. It will be filled if the _meta field has no block constraint
+  and therefore asks for the latest  block
+  
+  """
+  block: _Block_!
+  """The deployment ID"""
+  deployment: String!
+  """If `true`, the subgraph encountered indexing errors at some past block"""
+  hasIndexingErrors: Boolean!
+}
+
+enum _SubgraphErrorPolicy_ {
+  """Data will be returned even if the subgraph has indexing errors"""
+  allow
+  """
+  If the subgraph has indexing errors, data will be omitted. The default.
+  """
+  deny
+}
