@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from "./Card"
 import { Loading } from './Loading'
+import { BackToTop } from './BackToTop'
 
 //import from the generated directory
 const graphClient =  require('./../.graphclient')
@@ -87,6 +88,8 @@ export function Grid() {
             <Card key={nft.id} nft={nft} />
           ))}
         </div>
+
+        <BackToTop />
       </div>
     </div>
   )
