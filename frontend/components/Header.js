@@ -24,7 +24,7 @@ export function Header() {
               <Image src="/icons/twitter.png" alt="" width={20} height={20} />
             </a>
           </div>
-          <a href="https://github.com/falconandrea" title="" target="_blank" className={`mt-4 block underline text-sm`}>Page created by Andrea Falcon</a>
+          <a href="https://github.com/falconandrea" title="" target="_blank" className={`mt-4 block underline text-sm`}>Created by Andrea Falcon</a>
         </div>
       </div>
     </div>

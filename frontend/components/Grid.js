@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card } from "./Card"
 import { Loading } from './Loading'
 import { BackToTop } from './BackToTop'
+import { ModalFilters } from './ModalFilters'
 
 //import from the generated directory
 const graphClient =  require('./../.graphclient')
@@ -127,7 +128,8 @@ export function Grid() {
     setLoading(true)
     getData().then((data) => {
       setNfts(data)
-      setFilters(createFilterList(data))
+      const filtersValues = createFilterList(data)
+      setFilters(filtersValues)
       setLoading(false)
     })
   }, [])
@@ -137,7 +139,11 @@ export function Grid() {
       {loading && (
         <Loading />
       )}
-      <div className="container my-12 mx-auto px-4 md:px-12">
+      <div className="container mb-12 mt-4 mx-auto px-4 md:px-12">
+        {/* Button for show/hide filters */}
+        <ModalFilters filters={filters} />
+
+        {/* List NFTs */}
         <div className="flex flex-wrap -mx-1 lg:-mx-4">
           {nfts.map((nft) => (
             <Card key={nft.id} nft={nft} />
