@@ -97,15 +97,12 @@ const createFilterList = (data) => {
   // List of all traits
   const properties = ['background', 'clothing', 'ear', 'eyes', 'face', 'hair', 'headgear', 'mouth', 'neck', 'offhand', 'special', 'type']
 
-  // Filter list
   const listFilters = {}
-  properties.map((prop) => {
-    listFilters[prop] = []
-  })
 
   // Map the filters
   data.map((item) => {
-    Object.keys(listFilters).map(prop => {
+    properties.map(prop => {
+      if(!listFilters[prop]) listFilters[prop] = []
       if(item[prop] && listFilters[prop].indexOf(item[prop]) == -1) {
         listFilters[prop].push(item[prop])
       }
@@ -130,7 +127,7 @@ export function Grid() {
     setLoading(true)
     getData().then((data) => {
       setNfts(data)
-      createFilterList(data)
+      setFilters(createFilterList(data))
       setLoading(false)
     })
   }, [])
