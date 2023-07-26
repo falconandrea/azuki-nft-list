@@ -1,5 +1,5 @@
 export function BackToTop() {
-  const isBrowser = () => typeof window !== 'undefined'; //The approach recommended by Next.js
+  const isBrowser = () => typeof window !== 'undefined';
 
   function goToTop() {
       if (!isBrowser()) return;
