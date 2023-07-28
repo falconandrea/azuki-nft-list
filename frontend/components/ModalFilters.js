@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function ModalFilters({ filters }) {
+export function ModalFilters({ filters, setNfts, setLoading }) {
   const [showModal, setShowModal] = React.useState(false)
   const [checkedItems, setCheckedItems] = useState(new Set())
 
@@ -9,7 +9,7 @@ export function ModalFilters({ filters }) {
    *
    * @param {string} itemKey - The key of selected filter
    */
-const changeHandler = (itemKey) => {
+  const changeHandler = (itemKey) => {
     // first, make a copy of the original set rather than mutating the original
     const newValues = new Set(checkedItems)
     if (!newValues.has(itemKey)) {
@@ -30,8 +30,37 @@ const changeHandler = (itemKey) => {
     setCheckedItems(new Set())
   }
 
-  const applyFilters = (e) => {
-    console.log(checkedItems)
+  /**
+   * Applies filters to retrieve data from the API.
+   *
+   * @param {Event} e - The event that triggered the function.
+   * @return {Promise} A promise that resolves to the JSON response from the API.
+   */
+  const applyFilters = async (e) => {
+    const filters = {}
+
+    setLoading(true)
+
+    // Convert set filters in array
+    checkedItems.forEach(item => {
+      const splitItem = item.split("--")
+      if(!filters[splitItem[1]]) filters[splitItem[1]] = []
+      filters[splitItem[1]].push(splitItem[0])
+    })
+
+    // Get data filtered from API
+    const response = await fetch("/api/getData", {
+      method: "POST",
+      body: JSON.stringify({filters}),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+    })
+    const result = await response.json()
+
+    setNfts(result)
+    setLoading(false)
   }
 
   return (

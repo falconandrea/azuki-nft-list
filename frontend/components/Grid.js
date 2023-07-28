@@ -4,88 +4,16 @@ import { Loading } from './Loading'
 import { BackToTop } from './BackToTop'
 import { ModalFilters } from './ModalFilters'
 
-//import from the generated directory
-const graphClient =  require('./../.graphclient')
-
-/**
- * Converts an IPFS link to a website link.
- *
- * @param {string} ipfs - The IPFS link to be converted.
- * @return {string} The converted website link.
- */
-const convertIPFSLink = (ipfs) => {
-  return ipfs.replace("ipfs://", "https://ipfs.io/ipfs/");
-}
-
-/**
- * Generates an Opensea link for a given ID.
- *
- * @param {string} id - The ID of the asset.
- * @return {string} The Opensea link for the given ID.
- */
-const getOpenseaLink = (id) => {
-  return 'https://opensea.io/assets/ethereum/0xed5af388653567af2f388e6224dc7c4b3241c544/' + id
-}
-
-/**
- * Fetches the NFTs data.
- *
- * @return {Array} An array of NFTs data.
- */
-async function getNFTs(){
-  // Query to fetch the nfts data
-  const nftsQuery = `
-  query ListNFTs($skip: Int = 0) {
-    properties(first: 10, skip: $skip) {
-      id
-      image
-      type
-      hair
-      headgear
-      face
-      clothing
-      eyes
-      mouth
-      background
-      ear
-      offhand
-      special
-      neck
-    }
-  }`
-
-  // Loop to get all results
-  const allResults = []
-  let skip = 0
-  let hasItems = true
-  do {
-    const result = await graphClient.execute(nftsQuery, { skip })
-    allResults.push(...result.data.properties)
-    skip += 1000
-    hasItems = result.data.properties.length > 0
-    hasItems = false
-  } while (hasItems)
-
-  return allResults
-}
-
-/**
- * Retrieves data and maps some fields.
- *
- * @return {Promise<Array>} The data retrieved from the server.
- */
-async function getData(){
-  let data = await getNFTs()
-
-  // Order array by id field and return
-  data = data.map((item) => ({
-    ...item,
-    id: parseInt(item.id),
-    image: convertIPFSLink(item.image),
-    link: getOpenseaLink(item.id)
-  })).sort((a, b) => a.id - b.id)
-
-  return data
+const getData = async () => {
+  const response = await fetch("/api/getData", {
+    method: "POST",
+    body: JSON.stringify({filters: []}),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
+  });
+  return response.json();
 }
 
 /**
@@ -141,7 +69,7 @@ export function Grid() {
       )}
       <div className="container mb-12 mt-4 mx-auto px-4 md:px-12">
         {/* Button for show/hide filters */}
-        <ModalFilters filters={filters} />
+        <ModalFilters filters={filters} setNfts={setNfts} setLoading={setLoading} />
 
         {/* List NFTs */}
         <div className="flex flex-wrap -mx-1 lg:-mx-4">
