@@ -1,3 +1,7 @@
+<a href="https://trackgit.com">
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/lkmtwweuv8nned41pc9l" alt="trackgit-views" />
+</a>
+
 # Azuki NFT List
 
 Azuki NFT List is a React app built with Next.js that fetches and displays all NFTs from the Azuki collection using the Chainstack Subgraph.
