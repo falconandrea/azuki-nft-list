@@ -2,6 +2,8 @@
 
 Azuki NFT List is a React app built with Next.js that fetches and displays all NFTs from the Azuki collection using the Chainstack Subgraph.
 
+You can watch a video about how it works [here](https://drive.google.com/file/d/18V8Y4z7Dd0aRA5cq7fltMdWSujamU6nI/view?usp=sharing).
+
 ![Project image](screenshot.png)
 
 Here all the steps that I did to create this project.
