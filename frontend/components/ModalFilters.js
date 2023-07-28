@@ -52,7 +52,7 @@ export function ModalFilters({ filters }) {
                   const valuesFilter = filters[filter]
 
                   return (
-                    <div>
+                    <div key={filter}>
                       <div>
                         <div className=" flex space-x-2">
                           <p className=" lg:text-2xl text-xl lg:leading-6 leading-5 font-medium text-gray-800 ">{filter}</p>
@@ -60,7 +60,7 @@ export function ModalFilters({ filters }) {
                         <div className=" md:flex md:space-x-6 mt-8 grid grid-cols-3 gap-y-8 flex-wrap">
                           {valuesFilter.map(filterValue => {
                             return (
-                              <div className=" flex space-x-2 md:justify-center md:items-center items-center justify-start">
+                              <div key={filterValue} className=" flex space-x-2 md:justify-center md:items-center items-center justify-start">
                                 <input className="w-4 h-4 mr-2" type="checkbox" id={filterValue} name={filterValue} value={filterValue} onChange={changeHandler} />
                                 <div className=" inline-block">
                                   <div className=" flex space-x-6 justify-center items-center">
