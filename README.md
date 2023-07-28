@@ -29,7 +29,7 @@ To do this I used the [Online Documentation](https://docs.chainstack.com/docs/su
 npm install -g @graphprotocol/graph-cli
 ```
 
-2. Initialize your project with the Graph CLI:
+2. Initialize your project with the Graph CLI inside the folder AZUKI:
 
 ```bash
 graph init

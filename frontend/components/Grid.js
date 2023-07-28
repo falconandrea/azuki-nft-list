@@ -4,6 +4,11 @@ import { Loading } from './Loading'
 import { BackToTop } from './BackToTop'
 import { ModalFilters } from './ModalFilters'
 
+/**
+ * Retrieves data from the server using the '/api/getData' endpoint.
+ *
+ * @return {Promise<Response>} A promise that resolves to the JSON data retrieved from the server.
+ */
 const getData = async () => {
   const response = await fetch("/api/getData", {
     method: "POST",

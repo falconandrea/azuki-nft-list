@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['ipfs.io'],
-    unoptimized: true,
+    domains: ['ipfs.io'], // Add this to load images from IPFS domain
+    unoptimized: true, // Add this to disable unoptimized mode to avoid Vercel Image Optimization limit exceeded
   },
 }
 
